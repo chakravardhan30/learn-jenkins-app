@@ -25,14 +25,16 @@ pipeline {
         stage('check index.html')
         {
             steps{
-                if(fileExists('build/index.html'))
-                {
-                    echo 'index.html exists'
-                    def indexHtmlContent = readFile('build/index.html')
+                 script {
+                    if (fileExists('build/index.html')) {
+                        echo 'index.html exists'
+                        
+                        def indexHtmlContent = readFile('build/index.html')
                         echo "Contents of index.html:\n${indexHtmlContent}"
-                }
-                else{
-                    echo 'index.html doesnt exists'
+                    } else {
+                        echo 'index.html does not exist'
+                        error 'Build failed: index.html is missing in the build folder.'
+                    }
                 }
             }
         }
