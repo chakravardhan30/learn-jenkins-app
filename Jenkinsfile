@@ -49,7 +49,7 @@ pipeline {
 
             steps{
                 sh '''
-                npm run tests
+                npm run test
                 '''
             }
 
